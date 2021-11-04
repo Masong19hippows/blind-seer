@@ -11,7 +11,7 @@ pic_path = os.path.join(dir_path, "pics")
 
 # Slicing image from raspberry pi into 2 images from left to right.
 def slice():
-    image_slicer.slice(os.path.join(pic_path, "download.png"), 2)
+    image_slicer.slice(os.path.join(pic_path, "download.jpeg"), 2)
     shutil.move(os.path.join(pic_path, "download_01_01.png"), os.path.join(pic_path, "first_half.png"))
     shutil.move(os.path.join(pic_path, "download_01_02.png"), os.path.join(pic_path, "second_half.png"))
 
@@ -38,3 +38,4 @@ def get_color():
     list = np.append(palette1[np.argmax(counts1)], palette2[np.argmax(counts2)])
     return list
     
+print(get_color())
