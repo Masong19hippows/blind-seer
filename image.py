@@ -2,18 +2,26 @@ import image_slicer
 import os
 import shutil
 import cv2
+import time
 import numpy as np
 from skimage import io
+from picamera import PiCamera
 
 # Setting directories for future use
 dir_path = os.path.dirname(os.path.realpath(__file__))
 pic_path = os.path.join(dir_path, "pics")
 
+def get_image():
+    camera = PiCamera()
+    time.sleep(2)
+    camera.capture(os.path.join(pic_path, "img.jpg"))
+
 # Slicing image from raspberry pi into 2 images from left to right.
 def slice():
-    image_slicer.slice(os.path.join(pic_path, "download.jpeg"), 2)
-    shutil.move(os.path.join(pic_path, "download_01_01.png"), os.path.join(pic_path, "first_half.png"))
-    shutil.move(os.path.join(pic_path, "download_01_02.png"), os.path.join(pic_path, "second_half.png"))
+    get_image()
+    image_slicer.slice(os.path.join(pic_path, "img.jpg"), 2)
+    shutil.move(os.path.join(pic_path, "img_01_01.png"), os.path.join(pic_path, "first_half.png"))
+    shutil.move(os.path.join(pic_path, "img_01_02.png"), os.path.join(pic_path, "second_half.png"))
 
 
 # Getting the most dominant color (using k-means clustering) in the 2 images and outputting it as rgb values for both left and right
