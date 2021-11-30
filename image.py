@@ -1,8 +1,8 @@
 import image_slicer
 import os
+import sound
 import shutil
 import webcolors
-import sound
 import time
 from colorthief import ColorThief
 
@@ -12,21 +12,21 @@ from colorthief import ColorThief
 dir_path = os.path.dirname(os.path.realpath(__file__))
 pic_path = os.path.join(dir_path, "pics")
 
-def get_image():
-    camera = PiCamera()
-    time.sleep(2)
-    camera.capture(os.path.join(pic_path, "img.jpg"))
+#def get_image():
+#    camera = PiCamera()
+#    time.sleep(2)
+#    camera.capture(os.path.join(pic_path, "img.jpg"))
 
 # Slicing image from raspberry pi into 2 images from left to right.
 def slice():
-    get_image()
+#    get_image()
     image_slicer.slice(os.path.join(pic_path, "img.jpg"), 2)
     shutil.move(os.path.join(pic_path, "img_01_01.png"), os.path.join(pic_path, "left_half.png"))
     shutil.move(os.path.join(pic_path, "img_01_02.png"), os.path.join(pic_path, "right_half.png"))
 
   
 # Getting the most dominant color (using k-means clustering) in the 2 images and outputting it as rgb values for both left and right
-def get_color():
+def get_colors():
 
     # Slicing the image and setting variables that refrence both the split images
     slice()
@@ -51,4 +51,6 @@ def get_color():
 
     return colors
 while True:
-    sound.play(get_color())
+    test = get_colors()
+    print(test)
+    sound.play(test)
