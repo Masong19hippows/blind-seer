@@ -6,20 +6,20 @@ import webcolors
 import time
 from colorthief import ColorThief
 
-# from picamera import PiCamera
+from picamera import PiCamera
 
 # Setting directories for future use
 dir_path = os.path.dirname(os.path.realpath(__file__))
 pic_path = os.path.join(dir_path, "pics")
 
-#def get_image():
-#    camera = PiCamera()
-#    time.sleep(2)
-#    camera.capture(os.path.join(pic_path, "img.jpg"))
+def get_image():
+   camera = PiCamera()
+   time.sleep(2)
+   camera.capture(os.path.join(pic_path, "img.jpg"))
 
 # Slicing image from raspberry pi into 2 images from left to right.
 def slice():
-#    get_image()
+    get_image()
     image_slicer.slice(os.path.join(pic_path, "img.jpg"), 2)
     shutil.move(os.path.join(pic_path, "img_01_01.png"), os.path.join(pic_path, "left_half.png"))
     shutil.move(os.path.join(pic_path, "img_01_02.png"), os.path.join(pic_path, "right_half.png"))
