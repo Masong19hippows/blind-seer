@@ -1,39 +1,23 @@
-# This is for adding left and right sound based on the color of images.
-import math
-import pyaudio
-from image import get_color
-
-color = get_color()
-PyAudio = pyaudio.PyAudio
-real_color = color[0] + color[1] + color[2]
-#See https://en.wikipedia.org/wiki/Bit_rate#Audio
-BITRATE = 16000     #number of frames per second/frameset.      
+import image
+import pygame
+import os
+import soundfile
+from gtts import gTTS
 
 
-FREQUENCY = real_color    #Hz, waves per second, 261.63=C4-note.
-LENGTH = 5
+dir_path = os.path.dirname(os.path.realpath(__file__))
 
-if FREQUENCY > BITRATE:
-    BITRATE = FREQUENCY+100
-
-NUMBEROFFRAMES = int(BITRATE * LENGTH)
-RESTFRAMES = NUMBEROFFRAMES % BITRATE
-WAVEDATA = ''    
-
-#generating wawes
-for x in range(NUMBEROFFRAMES):
- WAVEDATA = WAVEDATA+chr(int(math.sin(x/((BITRATE/FREQUENCY)/math.pi))*127+128))    
-
-for x in range(RESTFRAMES): 
- WAVEDATA = WAVEDATA+chr(128)
-
-p = PyAudio()
-stream = p.open(format = p.get_format_from_width(1), 
-                channels = 1, 
-                rate = BITRATE, 
-                output = True)
-
-stream.write(WAVEDATA)
-stream.stop_stream()
-stream.close()
-p.terminate()
+def play():
+    pygame.mixer.init() 
+    color = image.get_color()
+    tts = gTTS(text=color[0], lang='en')
+    tts.save("colorleft.wav")
+    tts = gTTS(text=color[1], lang='en')
+    tts.save("colorright.wav")
+    pygame.mixer.init(frequency=44000, size=-16,channels=2, buffer=4096)
+    pygame.mixer.set_num_channels(2)
+    m = pygame.mixer.Sound(os.path.join(dir_path, 'colorleft.wav'))
+    n = pygame.mixer.Sound(os.path.join(dir_path, 'colorright.wav'))
+    pygame.mixer.Channel(1).play(m,-1)
+    pygame.mixer.Channel(2).play(n,-1)
+play()
