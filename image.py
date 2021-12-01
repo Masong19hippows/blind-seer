@@ -33,7 +33,6 @@ def slice():
   
 # Getting the most dominant color (using k-means clustering) in the 2 images and outputting it as rgb values for both left and right
 def get_colors():
-    print("loop\n")
     # Slicing the image and setting variables that refrence both the split images
     slice()
     left_rgb = ColorThief(os.path.join(pic_path, "left_half.png")).get_color(quality=1)
