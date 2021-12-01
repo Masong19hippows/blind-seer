@@ -2,6 +2,7 @@ import image_slicer
 import os
 import sound
 import time
+import threading
 import shutil
 import webcolors
 from colorthief import ColorThief
@@ -20,7 +21,6 @@ def get_image():
 
 # Slicing image from raspberry pi into 2 images from left to right.
 def slice():
-    get_image()
     image_slicer.slice(os.path.join(pic_path, "img.jpg"), 2)
     shutil.move(os.path.join(pic_path, "img_01_01.png"), os.path.join(pic_path, "left_half.png"))
     shutil.move(os.path.join(pic_path, "img_01_02.png"), os.path.join(pic_path, "right_half.png"))
@@ -28,7 +28,7 @@ def slice():
   
 # Getting the most dominant color (using k-means clustering) in the 2 images and outputting it as rgb values for both left and right
 def get_colors():
-
+    time.sleep(3)
     # Slicing the image and setting variables that refrence both the split images
     # slice()
     left_rgb = ColorThief(os.path.join(pic_path, "left_half.png")).get_color(quality=1)
@@ -52,4 +52,9 @@ def get_colors():
 
     return colors
 while True:
-    sound.play(get_colors())
+    t1 = threading.Thread(target=get_image, name='t1')
+    t2 = threading.Thread(target=sound.play(get_colors), name='t2')
+    t1.start()
+    t2.start()
+    t1.join()
+    t2.join()
