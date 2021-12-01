@@ -52,7 +52,7 @@ def get_colors():
 
     return colors
 
-t1 = threading.Thread(target=get_image(), name='t1')
+t1 = threading.Thread(target=get_image, name='t1')
 t1.start()
 while True:
     t2 = threading.Thread(target=sound.play(get_colors()), name='t2')
