@@ -7,6 +7,7 @@ import shutil
 import webcolors
 from colorthief import ColorThief
 from picamera import PiCamera
+from PIL import UnidentifiedImageError
 
 # Setting directories for future use
 dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -25,6 +26,7 @@ def slice():
     except UnidentifiedImageError:
         time.sleep(.5)
         image_slicer.slice(os.path.join(pic_path, "img.jpg"), 2)
+        
     shutil.move(os.path.join(pic_path, "img_01_01.png"), os.path.join(pic_path, "left_half.png"))
     shutil.move(os.path.join(pic_path, "img_01_02.png"), os.path.join(pic_path, "right_half.png"))
 
