@@ -1,8 +1,6 @@
 import os
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
-import time
-from pydub import AudioSegment
 from gtts import gTTS
 
 
@@ -10,9 +8,9 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 sound_path = os.path.join(dir_path, "pics")
 
 def play(colors):
-    tts = gTTS(text=colors[0], lang='en',  slow=True)
+    tts = gTTS(text=colors[0], lang='en',  slow=False)
     tts.save(os.path.join(sound_path, "colorleftOG.wav"))
-    tts = gTTS(text=colors[1], lang='en',  slow=True)
+    tts = gTTS(text=colors[1], lang='en',  slow=False)
     tts.save(os.path.join(sound_path, "colorrightOG.wav"))
     os.system(f"ffmpeg -y -i {os.path.join(sound_path, 'colorleftOG.wav')} {os.path.join(sound_path, 'colorleft.wav')}")
     os.system(f"ffmpeg -y -i {os.path.join(sound_path, 'colorrightOG.wav')} {os.path.join(sound_path, 'colorright.wav')}")
