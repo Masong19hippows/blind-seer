@@ -32,7 +32,7 @@ def get_colors():
     time.sleep(5)
     print("Get Colors started\n")
     # Slicing the image and setting variables that refrence both the split images
-    # slice()
+    slice()
     left_rgb = ColorThief(os.path.join(pic_path, "left_half.png")).get_color(quality=1)
     right_rgb = ColorThief(os.path.join(pic_path, "right_half.png")).get_color(quality=1)
     colors = []
