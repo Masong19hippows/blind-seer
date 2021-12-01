@@ -1,5 +1,6 @@
 import image_slicer
 import os
+import time
 import sound
 import threading
 import shutil
@@ -52,6 +53,6 @@ def get_colors():
 t1 = threading.Thread(target=get_image, name='t1')
 t1.start()
 while True:
+    time.sleep(3)
     t2 = threading.Thread(target=sound.play(get_colors()), name='t2')
     t2.start()
-    t2.join()
