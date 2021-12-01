@@ -29,7 +29,7 @@ def slice():
   
 # Getting the most dominant color (using k-means clustering) in the 2 images and outputting it as rgb values for both left and right
 def get_colors():
-    time.sleep(3)
+    time.sleep(5)
     print("Get Colors started\n")
     # Slicing the image and setting variables that refrence both the split images
     # slice()
