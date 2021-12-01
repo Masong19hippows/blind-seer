@@ -20,7 +20,11 @@ def get_image():
 
 # Slicing image from raspberry pi into 2 images from left to right.
 def slice():
-    image_slicer.slice(os.path.join(pic_path, "img.jpg"), 2)
+    try:
+        image_slicer.slice(os.path.join(pic_path, "img.jpg"), 2)
+    except UnidentifiedImageError:
+        time.sleep(.5)
+        image_slicer.slice(os.path.join(pic_path, "img.jpg"), 2)
     shutil.move(os.path.join(pic_path, "img_01_01.png"), os.path.join(pic_path, "left_half.png"))
     shutil.move(os.path.join(pic_path, "img_01_02.png"), os.path.join(pic_path, "right_half.png"))
 
