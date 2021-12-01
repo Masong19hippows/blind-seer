@@ -1,6 +1,7 @@
 import image_slicer
 import os
 import sound
+import time
 import shutil
 import webcolors
 from colorthief import ColorThief
