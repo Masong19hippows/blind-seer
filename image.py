@@ -14,7 +14,7 @@ pic_path = os.path.join(dir_path, "pics")
 def get_image():
     camera = PiCamera()
     camera.resolution = (352, 240)
-    camera.capture_continous(os.path.join(pic_path, "img.jpg"), use_video_port=False)
+    camera.capture_continuous(os.path.join(pic_path, "img.jpg"), use_video_port=False)
 
 # Slicing image from raspberry pi into 2 images from left to right.
 def slice():
@@ -48,10 +48,10 @@ def get_colors():
     colors.append(min_colours[min(min_colours.keys())])
 
     return colors
+
+t1 = threading.Thread(target=get_image, name='t1')
+t1.start()
 while True:
-    t1 = threading.Thread(target=get_image, name='t1')
     t2 = threading.Thread(target=sound.play(get_colors()), name='t2')
-    t1.start()
     t2.start()
-    t1.join()
     t2.join()
