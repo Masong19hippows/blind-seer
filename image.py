@@ -9,6 +9,7 @@ from colorthief import ColorThief
 from picamera import PiCamera
 from PIL import UnidentifiedImageError
 
+time.sleep(20)
 # Setting directories for future use
 dir_path = os.path.dirname(os.path.realpath(__file__))
 pic_path = os.path.join(dir_path, "pics")
