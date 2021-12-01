@@ -14,6 +14,7 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 pic_path = os.path.join(dir_path, "pics")
 
 def get_image():
+   print("Get Image started\n")
    camera = PiCamera()
    camera.resolution = (352, 240)
    camera.capture(os.path.join(pic_path, "img.jpg"))
@@ -29,6 +30,7 @@ def slice():
 # Getting the most dominant color (using k-means clustering) in the 2 images and outputting it as rgb values for both left and right
 def get_colors():
     time.sleep(3)
+    print("Get Colors started\n")
     # Slicing the image and setting variables that refrence both the split images
     # slice()
     left_rgb = ColorThief(os.path.join(pic_path, "left_half.png")).get_color(quality=1)
