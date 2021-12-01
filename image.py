@@ -14,11 +14,11 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 pic_path = os.path.join(dir_path, "pics")
 
 def get_image():
-   print("Get Image started\n")
    camera = PiCamera()
    camera.resolution = (352, 240)
    camera.capture(os.path.join(pic_path, "img.jpg"))
    camera.close()
+   print("Get Image ended\n")
 
 # Slicing image from raspberry pi into 2 images from left to right.
 def slice():
