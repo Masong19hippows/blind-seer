@@ -13,7 +13,6 @@ pic_path = os.path.join(dir_path, "pics")
 
 def get_image():
    camera = PiCamera()
-   camera.resolution = (640, 480)
    camera.capture(os.path.join(pic_path, "img.jpg"))
    camera.close()
 
