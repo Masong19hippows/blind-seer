@@ -28,9 +28,9 @@ def slice():
   
 # Getting the most dominant color (using k-means clustering) in the 2 images and outputting it as rgb values for both left and right
 def get_colors():
-    print("test\n")
+    print("loop\n")
     # Slicing the image and setting variables that refrence both the split images
-    # slice()
+    slice()
     left_rgb = ColorThief(os.path.join(pic_path, "left_half.png")).get_color(quality=1)
     right_rgb = ColorThief(os.path.join(pic_path, "right_half.png")).get_color(quality=1)
     colors = []
@@ -53,12 +53,12 @@ def get_colors():
     return colors
 
 
-def test():
+def loop():
     while True:
-        sound.play(get_colors())
+        sound.play()
 
 t1 = threading.Thread(target=get_image, name='t1')
-t2 = threading.Thread(target=test, name='t2')
+t2 = threading.Thread(target=loop, name='t2')
 t1.start()
 t2.start()
 
