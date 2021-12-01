@@ -14,6 +14,7 @@ pic_path = os.path.join(dir_path, "pics")
 
 def get_image():
    camera = PiCamera()
+   camera.resolution = (1280, 720)
    time.sleep(2)
    camera.capture(os.path.join(pic_path, "img.jpg"))
 
@@ -51,6 +52,4 @@ def get_colors():
 
     return colors
 while True:
-    test = get_colors()
-    print(test)
-    sound.play(test)
+    sound.play(get_colors())
