@@ -3,7 +3,6 @@ import os
 import sound
 import shutil
 import webcolors
-import time
 from colorthief import ColorThief
 
 from picamera import PiCamera
@@ -14,9 +13,9 @@ pic_path = os.path.join(dir_path, "pics")
 
 def get_image():
    camera = PiCamera()
-   camera.resolution = (1280, 720)
-   time.sleep(2)
+   camera.resolution = (640, 480)
    camera.capture(os.path.join(pic_path, "img.jpg"))
+   camera.close()
 
 # Slicing image from raspberry pi into 2 images from left to right.
 def slice():
