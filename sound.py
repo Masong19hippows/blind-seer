@@ -12,8 +12,8 @@ def play(colors):
     tts.save(os.path.join(sound_path, "colorleftOG.wav"))
     tts = gTTS(text=colors[1], lang='en',  slow=False)
     tts.save(os.path.join(sound_path, "colorrightOG.wav"))
-    os.system(f"ffmpeg -y -i {os.path.join(sound_path, 'colorleftOG.wav')} {os.path.join(sound_path, 'colorleft.wav')}")
-    os.system(f"ffmpeg -y -i {os.path.join(sound_path, 'colorrightOG.wav')} {os.path.join(sound_path, 'colorright.wav')}")
+    os.system(f"ffmpeg -y -i {os.path.join(sound_path, 'colorleftOG.wav')} {os.path.join(sound_path, 'colorleft.wav')}  > /dev/null 2>&1")
+    os.system(f"ffmpeg -y -i {os.path.join(sound_path, 'colorrightOG.wav')} {os.path.join(sound_path, 'colorright.wav')}  > /dev/null 2>&1")
 
     pygame.mixer.init(frequency=44000, size=-16,channels=2, buffer=4096)
 
