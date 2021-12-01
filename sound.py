@@ -24,7 +24,7 @@ def play():
     pygame.mixer.Channel(2).set_volume(0.0, 1.0)
     pygame.mixer.Channel(1).play(sound0)
     while pygame.mixer.Channel(1).get_busy():
-        pygame.time.delay(100)
+        pygame.time.delay(10)
     pygame.mixer.Channel(2).play(sound1)
     while pygame.mixer.Channel(2).get_busy():
-        pygame.time.delay(100)
+        pygame.time.delay(10)
