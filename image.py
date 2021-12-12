@@ -5,7 +5,6 @@ import sound
 import threading
 import shutil
 from PIL import Image
-import random
 from PIL import UnidentifiedImageError
 from math import sqrt
 from picamera import PiCamera
