@@ -5,6 +5,7 @@ import sound
 import threading
 import shutil
 from PIL import Image
+import random
 from PIL import UnidentifiedImageError
 from math import sqrt
 from picamera import PiCamera
@@ -22,10 +23,10 @@ def get_image():
 # Slicing image from raspberry pi into 2 images from left to right.
 def slice():
     try:
-        image_slicer.slice(os.path.join(pic_path, "img.png"), 2)
+        image_slicer.slice(os.path.join(pic_path, "img.jpg"), 2)
     except UnidentifiedImageError:
         time.sleep(.25)
-        image_slicer.slice(os.path.join(pic_path, "img.png"), 2)
+        image_slicer.slice(os.path.join(pic_path, "img.jpg"), 2)
         
     shutil.move(os.path.join(pic_path, "img_01_01.png"), os.path.join(pic_path, "left_half.png"))
     shutil.move(os.path.join(pic_path, "img_01_02.png"), os.path.join(pic_path, "right_half.png"))
