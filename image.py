@@ -7,17 +7,17 @@ import shutil
 from PIL import Image
 from PIL import UnidentifiedImageError
 from math import sqrt
-# from picamera import PiCamera
+from picamera import PiCamera
 
 # Setting directories for future use
 dir_path = os.path.dirname(os.path.realpath(__file__))
 pic_path = os.path.join(dir_path, "pics")
 
-# def get_image():
-    # camera = PiCamera()
-    # camera.resolution = (320, 240)
-    # for i in enumerate(camera.capture_continuous(os.path.join(pic_path, "img.jpg"), use_video_port=False)):
-    #         time.sleep(4)
+def get_image():
+    camera = PiCamera()
+    camera.resolution = (320, 240)
+    for i in enumerate(camera.capture_continuous(os.path.join(pic_path, "img.jpg"), use_video_port=False)):
+            time.sleep(2)
 
 # Slicing image from raspberry pi into 2 images from left to right.
 def slice():
@@ -101,9 +101,9 @@ def loop():
     while True:
         sound.play(get_colors())
 
-# t1 = threading.Thread(target=get_image, name='t1')
+t1 = threading.Thread(target=get_image, name='t1')
 t2 = threading.Thread(target=loop, name='t2')
-# t1.start()
+t1.start()
 t2.start()
 
 
