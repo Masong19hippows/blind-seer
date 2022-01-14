@@ -13,9 +13,9 @@ def play(colors):
     for file in os.listdir(sound_path):
         file_name = os.path.splitext(file)[0]
         if file_name == colors[0]:
-            left = os.path.join(sound_path, str(file_name) + "_changed.wav")
+            left = os.path.join(sound_path, str(file_name) + ".wav")
         if file_name == colors[1]:
-            right = os.path.join(sound_path, str(file_name) + "_changed.wav")
+            right = os.path.join(sound_path, str(file_name) + ".wav")
 
     
     sound0 = pygame.mixer.Sound(left)
