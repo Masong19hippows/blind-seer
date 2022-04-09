@@ -1,0 +1,4 @@
+image_slicer==2.1.1
+imageai==2.1.6
+Pillow==9.1.0
+pygame==2.1.0
