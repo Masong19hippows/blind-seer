@@ -1,4 +1,6 @@
 image_slicer==2.1.1
-imageai==2.1.6
+Keras==2.4.3
+numpy==1.19.3
 Pillow==9.1.0
 pygame==2.1.0
+tensorflow==2.2.0
