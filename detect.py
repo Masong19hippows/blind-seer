@@ -1,15 +1,50 @@
-from imageai.Detection import ObjectDetection
+import numpy
+from tensorflow import keras
+from keras.constraints import maxnorm
+from keras.utils import np_utils
+from keras.datasets import cifar10
 
-detector = ObjectDetection()
+seed = 21
+(X_train, y_train), (X_test, y_test) = cifar10.load_data()
 
-model_path = "yolo-tiny.h5"
-input_path = "pics/img.jpg"
-output_path = "newimage.jpg"
+X_train = X_train.astype('float32')
+X_test = X_test.astype('float32')
+X_train = X_train / 255.0
+X_test = X_test / 255.0
+y_train = np_utils.to_categorical(y_train)
+y_test = np_utils.to_categorical(y_test)
+class_num = y_test.shape[1]
 
-detector.setModelTypeAsTinyYOLOv3()
-detector.setModelPath(model_path)
-detector.loadModel()
-detection = detector.detectObjectsFromImage(input_image=input_path, output_image_path=output_path)
+model = keras.Sequential()
+model.add(keras.layers.Conv2D(32, (3, 3), input_shape=X_train.shape[1:], padding='same'))
+model.add(keras.layers.Activation('relu'))
 
-for eachItem in detection:
-    print(eachItem["name"] , " : ", eachItem["percentage_probability"])
+model.add(keras.layers.Conv2D(32, 3, input_shape=(32, 32, 3), activation='relu', padding='same'))
+model.add(keras.layers.Dropout(0.2))
+model.add(keras.layers.BatchNormalization())
+model.add(keras.layers.Conv2D(64, 3, activation='relu', padding='same'))
+model.add(keras.layers.MaxPooling2D(2))
+model.add(keras.layers.Dropout(0.2))
+model.add(keras.layers.BatchNormalization())
+model.add(keras.layers.Conv2D(64, 3, activation='relu', padding='same'))
+model.add(keras.layers.MaxPooling2D(2))
+model.add(keras.layers.Dropout(0.2))
+model.add(keras.layers.BatchNormalization())
+    
+model.add(keras.layers.Conv2D(128, 3, activation='relu', padding='same'))
+model.add(keras.layers.Dropout(0.2))
+model.add(keras.layers.BatchNormalization())
+model.add(keras.layers.Flatten())
+model.add(keras.layers.Dropout(0.2))
+model.add(keras.layers.Dense(32, activation='relu'))
+model.add(keras.layers.Dropout(0.3))
+model.add(keras.layers.BatchNormalization())
+model.add(keras.layers.Dense(class_num, activation='softmax'))
+model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy', 'val_accuracy'])
+print(model.summary())
+
+numpy.random.seed(seed)
+history = model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=25, batch_size=64)
+scores = model.evaluate(X_test, y_test, verbose=0)
+print("Accuracy: %.2f%%" % (scores[1]*100))
+
