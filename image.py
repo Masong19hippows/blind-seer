@@ -5,7 +5,7 @@ import sound
 import threading
 import colors
 import pygame.camera
-import RPi.GPIO as GPIO
+# import RPi.GPIO as GPIO
 import detect
 from pygame.locals import *
 
@@ -37,15 +37,15 @@ def loop():
     while True:
         while True:
         
-            if GPIO.input(10) == GPIO.HIGH:
-                sound.play(["two_beep, two_beep"], True)
-                break
+            # if GPIO.input(10) == GPIO.HIGH:
+            #     sound.play(["two_beep, two_beep"], True)
+            #     break
             sound.play(colors.get_colors())
             time.sleep(.2)
         while True:
-            if GPIO.input(10) == GPIO.HIGH:
-                sound.play(["one_beep, one_beep"], True)
-                break
+            # if GPIO.input(10) == GPIO.HIGH:
+            #     sound.play(["one_beep, one_beep"], True)
+            #     break
             sound.play(detect.detect(), True)
             
 

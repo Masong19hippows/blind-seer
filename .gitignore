@@ -1,8 +1,2 @@
 __pycache__
-*.pyc
-*test*
-pics/*
-!pics/.gitignore
-sounds/new/*
-!sounds/new/.gitignore
 detect_cfg/yolov3.weights
