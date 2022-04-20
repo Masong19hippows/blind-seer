@@ -2,13 +2,20 @@ import os
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
 import time
+import gtts
+import shutil
+
+
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 sound_path = os.path.join(dir_path, "sounds")
 pygame.mixer.init(frequency=44000, size=-16,channels=2, buffer=4096)
 
 
+
 def play(sounds,both = False):
+    left = None
+    right = None
     print(sounds)
     for file in os.listdir(sound_path):
         file_name = os.path.splitext(file)[0]
@@ -17,7 +24,20 @@ def play(sounds,both = False):
         if both == False:
             if file_name == sounds[1]:
                 right = os.path.join(sound_path, str(file_name) + ".wav")
+    for file in os.listdir(os.path.join(sound_path, "new")):
+        file_name = os.path.splitext(file)[0]
+        if file_name == sounds[0]:
+            left = os.path.join(sound_path, "new", str(file_name) + ".wav")
+        if both == False:
+            if file_name == sounds[1]:
+                right = os.path.join(sound_path, "new", str(file_name) + ".wav")
 
+    if both == True:
+        if left == None:
+            gtts.gTTS(sounds[0]).save(os.path.join(sound_path, "new", str(sounds[0]) + ".wav"))
+            os.system(f'ffmpeg -i {os.path.join(sound_path, "new", str(sounds[0]) + ".wav")} {os.path.join(sound_path, "new", str(sounds[0]) + "t.wav")}')
+            shutil.move(os.path.join(sound_path, "new", str(sounds[0]) + "t.wav"), os.path.join(sound_path, "new", str(sounds[0]) + ".wav"))
+            left = os.path.join(sound_path, "new", str(sounds[0]) + ".wav")
 
     if both == False:
         sound0 = pygame.mixer.Sound(left)
