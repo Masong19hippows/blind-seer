@@ -1,2 +1,2 @@
 __pycache__
-detect_cfg/yolov3.weights
+detect_cfg/*
