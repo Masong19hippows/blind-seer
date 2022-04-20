@@ -1,5 +1,6 @@
 gTTS==2.2.4
 image_slicer==2.1.1
+keyboard==0.13.5
 numpy==1.21.5
 opencv_python==4.5.5.64
 pygame==2.1.2

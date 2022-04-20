@@ -61,4 +61,4 @@ def detect():
     if name != None:
         return [classes[class_ids[name]], classes[class_ids[name]]]
     else:
-        return ["test", "test"]
+        return ["None", "None"]

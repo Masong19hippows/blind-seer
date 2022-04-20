@@ -4,6 +4,8 @@ import pygame
 import time
 import gtts
 import shutil
+import wave
+
 
 
 
@@ -35,8 +37,18 @@ def play(sounds,both = False):
     if both == True:
         if left == None:
             gtts.gTTS(sounds[0]).save(os.path.join(sound_path, "new", str(sounds[0]) + ".wav"))
-            os.system(f'ffmpeg -i {os.path.join(sound_path, "new", str(sounds[0]) + ".wav")} {os.path.join(sound_path, "new", str(sounds[0]) + "t.wav")}')
+            os.system(f'ffmpeg.exe -i "{os.path.join(sound_path, "new", str(sounds[0]) + ".wav")}" "{os.path.join(sound_path, "new", str(sounds[0]) + "t.wav")}"')
             shutil.move(os.path.join(sound_path, "new", str(sounds[0]) + "t.wav"), os.path.join(sound_path, "new", str(sounds[0]) + ".wav"))
+            spf = wave.open(os.path.join(sound_path, "new", str(sounds[0]) + ".wav"), 'rb')
+            RATE = spf.getframerate()
+            signal = spf.readframes(-1)
+            wf = wave.open(os.path.join(sound_path, "new", str(sounds[0]) + ".wav"), 'wb')
+            wf.setnchannels(1)
+            wf.setsampwidth(2)
+            wf.setframerate(RATE*1.6)
+            wf.writeframes(signal)
+            wf.close()
+            spf.close()
             left = os.path.join(sound_path, "new", str(sounds[0]) + ".wav")
 
     if both == False:
