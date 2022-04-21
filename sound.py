@@ -37,7 +37,7 @@ def play(sounds,both = False):
     if both == True:
         if left == None:
             gtts.gTTS(sounds[0]).save(os.path.join(sound_path, "new", str(sounds[0]) + ".wav"))
-            os.system(f'ffmpeg.exe -i "{os.path.join(sound_path, "new", str(sounds[0]) + ".wav")}" "{os.path.join(sound_path, "new", str(sounds[0]) + "t.wav")}"')
+            os.system(f'ffmpeg -i "{os.path.join(sound_path, "new", str(sounds[0]) + ".wav")}" "{os.path.join(sound_path, "new", str(sounds[0]) + "t.wav")}"')
             shutil.move(os.path.join(sound_path, "new", str(sounds[0]) + "t.wav"), os.path.join(sound_path, "new", str(sounds[0]) + ".wav"))
             spf = wave.open(os.path.join(sound_path, "new", str(sounds[0]) + ".wav"), 'rb')
             RATE = spf.getframerate()
