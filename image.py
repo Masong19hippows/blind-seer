@@ -59,7 +59,7 @@ def loop():
             # if GPIO.input(10) == GPIO.HIGH:
             #     sound.play(["two_beep, two_beep"], True)
             #     break
-            sound.play(colors.get_colors())
+            sound.play(detect.detect(), True)
             time.sleep(.2)
         while True:
             # if keyboard.is_pressed("x"):
