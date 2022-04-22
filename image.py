@@ -3,11 +3,10 @@ import sys
 import time
 import sound
 import requests
-import keyboard
 import threading
 import colors
 import pygame.camera
-# import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 import detect
 from pygame.locals import *
 
@@ -37,16 +36,15 @@ def get_image():
 
 
 def loop():
-    # button_pressed = False
-    # GPIO.setwarnings(False) # Ignore warning for now
-    # GPIO.setmode(GPIO.BOARD) # Use physical pin numbering
-    # GPIO.setup(10, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    GPIO.setwarnings(False) # Ignore warning for now
+    GPIO.setmode(GPIO.BOARD) # Use physical pin numbering
+    GPIO.setup(10, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     sound.play(["one_beep", "one_beep"], True) # Letting User know that its in Color detection mode
     time.sleep(3)
     
     while True:
         while True:
-            if keyboard.is_pressed("x"):
+            if GPIO.input(10) == GPIO.HIGH:
                 try: 
                     request = requests.get("https://google.com", timeout=5)
                 except (requests.ConnectionError, requests.Timeout) as exception:
@@ -57,19 +55,15 @@ def loop():
                 sound.play(["two_beep", "two_beep"], True)
                 time.sleep(3)
                 break
-            # if GPIO.input(10) == GPIO.HIGH:
-            #     sound.play(["two_beep, two_beep"], True)
-            #     break
-            sound.play(detect.detect(), True)
+  
+            sound.play(colors.get_colors, True)
             time.sleep(.2)
         while True:
-            if keyboard.is_pressed("x"):
-                sound.play(["one_beep", "one_beep"], True)
+
+            if GPIO.input(10) == GPIO.HIGH:
+                sound.play(["one_beep, one_beep"], True)
                 time.sleep(3)
                 break
-            # if GPIO.input(10) == GPIO.HIGH:
-            #     sound.play(["one_beep, one_beep"], True)
-            #     break
             sound.play(detect.detect(), True)
             
 
