@@ -22,7 +22,7 @@ def get_image():
     if camlist == []:
         sys.exit("Camera Not Found")
     else:
-        camera = pygame.camera.Camera(camlist[1],(640,480), "RGB")
+        camera = pygame.camera.Camera(camlist[0],(640,480), "RGB")
 
     camera.start()
     while True:
