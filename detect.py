@@ -6,6 +6,10 @@ import os
 dir_path = os.path.dirname(os.path.realpath(__file__))
 pic_path = os.path.join(dir_path, "pics")
 img_path = os.path.join(dir_path, "detect_cfg")
+net = cv2.dnn.readNet(os.path.join(img_path, "yolov3.weights"), os.path.join(img_path, "yolov3.cfg"))
+with open(os.path.join(img_path, "yolov3.txt"), 'r') as f:
+    classes = [line.strip() for line in f.readlines()]
+scale = 0.00392
 
 def detect():
     def get_output_layers(net):
@@ -19,21 +23,15 @@ def detect():
 
 
 
-        
+    
     image = cv2.imread(os.path.join(pic_path, "img.jpg"))
 
-    Width = image.shape[1]
-    Height = image.shape[0]
-    scale = 0.00392
+    
 
-    classes = None
+    
+ 
 
-    with open(os.path.join(img_path, "yolov3.txt"), 'r') as f:
-        classes = [line.strip() for line in f.readlines()]
-
-    net = cv2.dnn.readNet(os.path.join(img_path, "yolov3.weights"), os.path.join(img_path, "yolov3.cfg"))
-
-    blob = cv2.dnn.blobFromImage(image, scale, (416,416), (0,0,0), True, crop=False)
+    blob = cv2.dnn.blobFromImage(image, scale, (416,416), (0,0,0), True)
 
     net.setInput(blob)
 
@@ -41,6 +39,7 @@ def detect():
 
     class_ids = []
     confidences = []
+
 
 
     for out in outs:
