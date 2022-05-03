@@ -38,7 +38,7 @@ def get_image():
 def loop():
     GPIO.setwarnings(False) # Ignore warning for now
     GPIO.setmode(GPIO.BOARD) # Use physical pin numbering
-    GPIO.setup(10, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    GPIO.setup(26, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     sound.play(["one_beep", "one_beep"], True) # Letting User know that its in Color detection mode
     time.sleep(3)
     
