@@ -60,7 +60,7 @@ def loop():
             time.sleep(.2)
         while True:
 
-            if GPIO.input(10) == GPIO.HIGH:
+            if GPIO.input(26) == GPIO.HIGH:
                 sound.play(["one_beep", "one_beep"], True)
                 time.sleep(1.5)
                 break
