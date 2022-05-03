@@ -56,7 +56,7 @@ def loop():
                 time.sleep(1.5)
                 break
   
-            sound.play(detect.detect(), True)
+            sound.play(colors.get_colors(), True)
             time.sleep(.2)
         while True:
 
