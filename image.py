@@ -29,10 +29,10 @@ def get_image():
         time.sleep(.5)
         image = camera.get_image()
         try:
-            pygame.image.save(image, "pics/img.jpg")
+            pygame.image.save(image, os.path.join(pic_path, "img.jpg"))
         except:
             time.sleep(.25)
-            pygame.image.save(image, "pics/img.jpg")
+            pygame.image.save(image, os.path.join(pic_path, "img.jpg"))
 
 
 def loop():
