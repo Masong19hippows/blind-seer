@@ -44,7 +44,7 @@ def loop():
     
     while True:
         while True:
-            if GPIO.input(10) == GPIO.HIGH:
+            if GPIO.input(26) == GPIO.HIGH:
                 try: 
                     request = requests.get("https://google.com", timeout=3)
                 except (requests.ConnectionError, requests.Timeout) as exception:
