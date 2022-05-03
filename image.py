@@ -6,7 +6,7 @@ import requests
 import threading
 import colors
 import pygame.camera
-# import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 import detect
 from pygame.locals import *
 
