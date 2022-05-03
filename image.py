@@ -44,26 +44,26 @@ def loop():
     
     while True:
         while True:
-            # if GPIO.input(10) == GPIO.HIGH:
-            #     try: 
-            #         request = requests.get("https://google.com", timeout=3)
-            #     except (requests.ConnectionError, requests.Timeout) as exception:
-            #         sound.play(["no_internet", "no_internet"], True)
-            #         time.sleep(.5)
-            #         continue
+            if GPIO.input(10) == GPIO.HIGH:
+                try: 
+                    request = requests.get("https://google.com", timeout=3)
+                except (requests.ConnectionError, requests.Timeout) as exception:
+                    sound.play(["no_internet", "no_internet"], True)
+                    time.sleep(.5)
+                    continue
 
-                # sound.play(["two_beep", "two_beep"], True)
-                # time.sleep(1.5)
-                # break
+                sound.play(["two_beep", "two_beep"], True)
+                time.sleep(1.5)
+                break
   
             sound.play(detect.detect(), True)
             time.sleep(.2)
         while True:
 
-            # if GPIO.input(10) == GPIO.HIGH:
-            #     sound.play(["one_beep", "one_beep"], True)
-            #     time.sleep(1.5)
-            #     break
+            if GPIO.input(10) == GPIO.HIGH:
+                sound.play(["one_beep", "one_beep"], True)
+                time.sleep(1.5)
+                break
             sound.play(detect.detect(), True)
             
 
