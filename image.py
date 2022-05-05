@@ -6,6 +6,7 @@ import requests
 import threading
 import colors
 import pygame.camera
+import keyboard
 # import RPi.GPIO as GPIO
 import detect
 from pygame.locals import *
@@ -44,27 +45,27 @@ def loop():
     
     while True:
         while True:
-            # if GPIO.input(26) == GPIO.HIGH:
-            #     try: 
-            #         request = requests.get("https://google.com", timeout=3)
-            #     except (requests.ConnectionError, requests.Timeout) as exception:
-            #         sound.play(["no_internet", "no_internet"], True)
-            #         time.sleep(.5)
-            #         continue
+             if keyboard.is_pressed('x'):
+                try: 
+                    request = requests.get("https://google.com", timeout=3)
+                except (requests.ConnectionError, requests.Timeout) as exception:
+                    sound.play(["no_internet", "no_internet"], True)
+                    time.sleep(.5)
+                    continue
 
-            #     sound.play(["two_beep", "two_beep"], True)
-            #     time.sleep(1.5)
-            #     break
+                sound.play(["two_beep", "two_beep"], True)
+                time.sleep(1.5)
+                break
   
-            sound.play(detect.detect(), True)
+            sound.play(colors.get_colors())
             time.sleep(.2)
-        # while True:
+        while True:
 
-            # if GPIO.input(26) == GPIO.HIGH:
-            #     sound.play(["one_beep", "one_beep"], True)
-            #     time.sleep(1.5)
-            #     break
-            # sound.play(detect.detect(), True)
+             if keyboard.is_pressed('x'):
+                sound.play(["one_beep", "one_beep"], True)
+                time.sleep(1.5)
+                break
+            sound.play(detect.detect(), True)
             
 
 t1 = threading.Thread(target=get_image, name='t1')
