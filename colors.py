@@ -23,8 +23,8 @@ def slice_image():
     shutil.move(os.path.join(pic_path, "img_01_02.png"), os.path.join(pic_path, "right_half.png"))
 
 Colors = {
-    'black': (0, 0, 0),
-    'white': (255, 255, 255),
+    # 'black': (0, 0, 0),
+    # 'white': (255, 255, 255),
     'red': (255, 0, 0), 
     'lime': (0, 255, 0),
     'blue': (0, 0, 255),
@@ -32,7 +32,7 @@ Colors = {
     'cyan': (0, 255, 255),
     'magenta': (255, 0, 255),
     'silver': (192, 192, 192),
-    'gray': (128, 128, 128),
+    # 'gray': (128, 128, 128),
     'maroon': (128, 0, 0),
     'olive': (128, 128, 0),
     'green': (0, 128, 0),
@@ -40,7 +40,7 @@ Colors = {
     'teal': (0, 128, 128),
     'navy': (0, 0, 128),
     'orange': (255, 165, 0),
-    'brown': (165, 42, 42)
+    # 'brown': (165, 42, 42)
 }
 
 def closest_color(rgb):
