@@ -45,7 +45,7 @@ def loop():
     
     while True:
         while True:
-             if keyboard.is_pressed('x'):
+            if keyboard.is_pressed('x'):
                 try: 
                     request = requests.get("https://google.com", timeout=3)
                 except (requests.ConnectionError, requests.Timeout) as exception:
@@ -61,7 +61,7 @@ def loop():
             time.sleep(.2)
         while True:
 
-             if keyboard.is_pressed('x'):
+            if keyboard.is_pressed('x'):
                 sound.play(["one_beep", "one_beep"], True)
                 time.sleep(1.5)
                 break
