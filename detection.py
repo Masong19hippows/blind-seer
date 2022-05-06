@@ -40,7 +40,7 @@ def loop():
     # GPIO.setwarnings(False) # Ignore warning for now
     # GPIO.setmode(GPIO.BOARD) # Use physical pin numbering
     # GPIO.setup(26, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-    sound.play(["one_beep", "one_beep"], True) # Letting User know that its in Color detection mode
+    sound.play(["two_beep", "two_beep"], True) # Letting User know that its in Color detection mode
     time.sleep(3)
     
     while True:

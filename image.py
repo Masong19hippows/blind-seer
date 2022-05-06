@@ -45,26 +45,26 @@ def loop():
     
     while True:
         while True:
-            if keyboard.read_key() == "x":
-                try: 
-                    request = requests.get("https://google.com", timeout=3)
-                except (requests.ConnectionError, requests.Timeout) as exception:
-                    sound.play(["no_internet", "no_internet"], True)
-                    time.sleep(.5)
-                    continue
+            # if keyboard.read_key() == "x":
+            #     try: 
+            #         request = requests.get("https://google.com", timeout=3)
+            #     except (requests.ConnectionError, requests.Timeout) as exception:
+            #         sound.play(["no_internet", "no_internet"], True)
+            #         time.sleep(.5)
+            #         continue
 
-                sound.play(["two_beep", "two_beep"], True)
-                time.sleep(1.5)
-                break
+            #     sound.play(["two_beep", "two_beep"], True)
+            #     time.sleep(1.5)
+            #     break
   
             sound.play(colors.get_colors())
             time.sleep(.2)
         while True:
 
-            if keyboard.read_key() == "p":
-                sound.play(["one_beep", "one_beep"], True)
-                time.sleep(1.5)
-                break
+            # if keyboard.read_key() == "p":
+            #     sound.play(["one_beep", "one_beep"], True)
+            #     time.sleep(1.5)
+            #     break
             sound.play(detect.detect(), True)
             
 
